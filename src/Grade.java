@@ -1,8 +1,7 @@
 public class Grade {
     private String grade;
-
     private int score;
-    Grade(String grade, String color, int score) {
+    Grade(String grade, int score) {
         this.grade = grade;
         this.score = score;
 
