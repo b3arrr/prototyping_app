@@ -1,24 +1,67 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        userAddScore();
 
 
         /*GradeManager manager = new GradeManager();*/
-        ArrayList<Grade> listGrades = new ArrayList<>();
+        /*ArrayList<Grade> listGrades = new ArrayList<>();
 
         initializeGrades(listGrades);
 
         for (Grade grade : listGrades) {
             System.out.println(grade.getGrade() + " " + grade.getScore());
-        }
+        }*/
 
     }
 
-    public static void usedAddScore () {  //method that allows the user to choose which grade to add points to
-        System.out.println("Enter which grade to add points");
+    public static void userAddScore() {  //method that allows the user to choose which grade to add points to
+
         Scanner scanner = new Scanner(System.in);
+        boolean loop = true;
+        int userInput = 0;
+        while (loop) {
+            System.out.println("Enter which grade to add points");
+            System.out.println("1. White");
+            System.out.println("2. Green");
+            System.out.println("3. Blue");
+            System.out.println("4. Yellow");
+            System.out.println("5. Red");
+            System.out.println("6. Black");
+            System.out.println("7. Quit");
+            boolean eLoop = true; //Boolean loop value for the inner loop with a try catch method to see validate that the user input is an integer value.
+            while (eLoop) {
+                try {
+                    userInput = scanner.nextInt();
+                    if (userInput < 1 || userInput > 7) {
+                        throw new Exception("Number not in range");
+                    }
+                    eLoop = false;
+                } catch (Exception e) {
+                    System.out.println("Please write a integer value that is within 1-7");
+                }
+            }
+
+            switch(userInput) {
+                case 1:
+                    System.out.println("case 1");
+                    break;
+                case 2:
+                    System.out.println("case 2");
+                    break;
+                case 3:
+                    System.out.println("case 3");
+                    break;
+                default:
+                    System.out.println("default something wrong");
+            }
+            loop = false;
+
+        }
+
 
     }
 
