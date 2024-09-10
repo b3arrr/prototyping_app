@@ -17,7 +17,14 @@ public class Main {
         }*/
 
     }
-
+    public static void removeScore(Grade grade) {
+        int score = grade.getScore();
+        score--;
+    }
+    public static void addScore(Grade grade){
+        int score = grade.getScore();
+        score++;
+    }
     public static void userAddScore() {  //method that allows the user to choose which grade to add points to
 
         Scanner scanner = new Scanner(System.in);
@@ -45,7 +52,7 @@ public class Main {
                 }
             }
 
-            switch(userInput) {
+            switch (userInput) {
                 case 1:
                     System.out.println("case 1");
                     break;
@@ -55,10 +62,23 @@ public class Main {
                 case 3:
                     System.out.println("case 3");
                     break;
+                case 4:
+                    System.out.println("case 4");
+                    break;
+                case 5:
+                    System.out.println("case 5");
+                    break;
+                case 6:
+                    System.out.println("case 6");
+                    break;
+                case 7:
+                    System.out.println("case 7");
+                    loop = false;
+                    break;
                 default:
                     System.out.println("default something wrong");
             }
-            loop = false;
+
 
         }
 
