@@ -1,21 +1,30 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        userAddScore();
 
 
         /*GradeManager manager = new GradeManager();*/
-        /*ArrayList<Grade> listGrades = new ArrayList<>();
-
+        ArrayList<Grade> listGrades = new ArrayList<>();
         initializeGrades(listGrades);
+        userAddScore(listGrades);
 
         for (Grade grade : listGrades) {
             System.out.println(grade.getGrade() + " " + grade.getScore());
-        }*/
+        }
 
+
+
+
+    }
+    public static void scorePlus(ArrayList<Grade> listGrades, int userInt) { //adds the score of the list item at user defined index
+        Grade grade = listGrades.get(userInt -1); //-1 since arraylist index begins from [0] not 1, but the user input is from 1-7
+        addScore(grade);
+    }
+    public static void scoreMinus(ArrayList<Grade> listGrades, int userInt) { //removes score of the list item at user defined index
+        Grade grade = listGrades.get(userInt - 1); //-1 since arraylist index begins from [0] not 1, but the user input is from 1-7
+        removeScore(grade);
     }
     public static void removeScore(Grade grade) {
         int score = grade.getScore();
@@ -25,7 +34,7 @@ public class Main {
         int score = grade.getScore();
         score++;
     }
-    public static void userAddScore() {  //method that allows the user to choose which grade to add points to
+    public static void userAddScore(ArrayList<Grade> listGrades) {  //method that allows the user to choose which grade to add points to
 
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
@@ -48,28 +57,42 @@ public class Main {
                     }
                     eLoop = false;
                 } catch (Exception e) {
-                    System.out.println("Please write a integer value that is within 1-7");
+                    System.out.println("Please write a number that is within 1-7");
                 }
             }
 
-            switch (userInput) {
+            if (userInput != 7) {
+                System.out.println("Added 1 to case:  " + userInput);
+                scorePlus(listGrades, userInput);
+            }
+            else {
+                loop = false;
+            }
+
+          /*  switch (userInput) {
                 case 1:
                     System.out.println("case 1");
+                    scorePlus(userInput);
                     break;
                 case 2:
                     System.out.println("case 2");
+                    scorePlus(userInput);
                     break;
                 case 3:
                     System.out.println("case 3");
+                    scorePlus(userInput);
                     break;
                 case 4:
                     System.out.println("case 4");
+                    scorePlus(userInput);
                     break;
                 case 5:
                     System.out.println("case 5");
+                    scorePlus(userInput);
                     break;
                 case 6:
                     System.out.println("case 6");
+                    scorePlus(userInput);
                     break;
                 case 7:
                     System.out.println("case 7");
@@ -77,7 +100,7 @@ public class Main {
                     break;
                 default:
                     System.out.println("default something wrong");
-            }
+            }*/
 
 
         }
