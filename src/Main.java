@@ -5,36 +5,106 @@ public class Main {
     public static void main(String[] args) {
 
 
-        /*GradeManager manager = new GradeManager();*/
         ArrayList<Grade> listGrades = new ArrayList<>();
         initializeGrades(listGrades);
-        userAddScore(listGrades);
+        userProgramStart(listGrades);
 
+    }
+
+
+
+
+public static void userProgramStart(ArrayList<Grade>listGrades) {
+    Scanner scanner = new Scanner(System.in);
+    String comment = "You have not written a comment";
+    int userInput = 0;
+
+    while (true) {
+        System.out.println("What do you wish to do?");
+        System.out.println("1. Increment scores");
+        System.out.println("2. Decrement scores");
+        System.out.println("3. Log scores");
+        System.out.println("4. Add comment");
+        System.out.println("5. See comment");
+        System.out.println("6. Quit application");
+        boolean loop = true;
+        while (loop) {
+            try {
+                userInput = scanner.nextInt();
+                if (userInput < 1 || userInput > 6){
+                    throw new Exception("number not in range");
+                }
+                loop = false;
+
+            } catch (Exception e) {
+                System.out.println("Not a number please try again.");
+                throw new RuntimeException(e);
+            }
+        }
+
+        switch(userInput) {
+            case 1:
+                promptUserModifyScore(listGrades, true);
+                break;
+            case 2:
+                promptUserModifyScore(listGrades, false);
+                break;
+            case 3:
+                logScore(listGrades);
+                break;
+            case 4:
+                comment = addComment(comment);
+                break;
+            case 5:
+                System.out.println(comment);
+                break;
+            case 6:
+                System.out.println("Quitting application");
+                System.exit(0);
+            default:
+                System.out.println("something went wrong");
+
+        }
+    }
+
+}
+
+
+
+
+
+
+    public static String addComment(String comment) {
+        Scanner scanner = new Scanner(System.in);
+        comment = scanner.nextLine();
+        return comment;
+
+
+    }
+    public static void logScore (ArrayList<Grade>listGrades) {
         for (Grade grade : listGrades) {
             System.out.println(grade.getGrade() + " " + grade.getScore());
         }
-
-
-
-
     }
-    public static void scorePlus(ArrayList<Grade> listGrades, int userInt) { //adds the score of the list item at user defined index
-        Grade grade = listGrades.get(userInt -1); //-1 since arraylist index begins from [0] not 1, but the user input is from 1-7
+    public static void incrementScore(ArrayList<Grade> listGrades, int userInt) { //adds the score of the list item at user defined index
+        Grade grade = listGrades.get(userInt - 1); //-1 since arraylist index begins from [0] not 1, but the user input is from 1-7
         addScore(grade);
     }
-    public static void scoreMinus(ArrayList<Grade> listGrades, int userInt) { //removes score of the list item at user defined index
+    public static void decrementScore(ArrayList<Grade> listGrades, int userInt) { //removes score of the list item at user defined index
         Grade grade = listGrades.get(userInt - 1); //-1 since arraylist index begins from [0] not 1, but the user input is from 1-7
         removeScore(grade);
     }
     public static void removeScore(Grade grade) {
         int score = grade.getScore();
         score--;
+        grade.setScore(score);
     }
     public static void addScore(Grade grade){
         int score = grade.getScore();
         score++;
+        grade.setScore(score);
     }
-    public static void userAddScore(ArrayList<Grade> listGrades) {  //method that allows the user to choose which grade to add points to
+    public static void promptUserModifyScore(ArrayList<Grade> listGrades, boolean increment) {  //method that allows the user to choose which grade to add points to
 
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
@@ -62,47 +132,16 @@ public class Main {
             }
 
             if (userInput != 7) {
-                System.out.println("Added 1 to case:  " + userInput);
-                scorePlus(listGrades, userInput);
+                if (increment == true) {
+                    incrementScore(listGrades, userInput);
+                }
+                else {
+                    decrementScore(listGrades, userInput);
+                }
             }
             else {
                 loop = false;
             }
-
-          /*  switch (userInput) {
-                case 1:
-                    System.out.println("case 1");
-                    scorePlus(userInput);
-                    break;
-                case 2:
-                    System.out.println("case 2");
-                    scorePlus(userInput);
-                    break;
-                case 3:
-                    System.out.println("case 3");
-                    scorePlus(userInput);
-                    break;
-                case 4:
-                    System.out.println("case 4");
-                    scorePlus(userInput);
-                    break;
-                case 5:
-                    System.out.println("case 5");
-                    scorePlus(userInput);
-                    break;
-                case 6:
-                    System.out.println("case 6");
-                    scorePlus(userInput);
-                    break;
-                case 7:
-                    System.out.println("case 7");
-                    loop = false;
-                    break;
-                default:
-                    System.out.println("default something wrong");
-            }*/
-
-
         }
 
 
