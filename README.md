@@ -26,5 +26,3 @@ The program uses an `ArrayList` of `Grade` objects where each grade has a color 
 3. Follow the menu options to increment, decrement scores, or log the results.
 4. Add and view comments as needed.
 5. Quit the program by selecting the appropriate menu option.
-
-### Example Usage
